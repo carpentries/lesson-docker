@@ -1,5 +1,5 @@
 # Explicitly set Jekyll version across all repos
-ENV JEKYLL_VERSION 3.8.5
+ARG JEKYLL_VERSION=3.8.5
 FROM jekyll/jekyll:${JEKYLL_VERSION}
 
 # Ensure that the Gemfile and Gemfile.lock have the right permissions
