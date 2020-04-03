@@ -25,4 +25,4 @@ COPY ./bin/docker-setup.sh /srv/site/bin/docker-setup.sh
 
 WORKDIR /srv/site
 
-ENTRYPOINT bin/docker-setup.sh &&
+ENTRYPOINT /bin/bash -c bin/docker-setup.sh && bash
