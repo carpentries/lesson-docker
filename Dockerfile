@@ -25,16 +25,18 @@ RUN export PATH=$(ruby -e 'puts Gem.user_dir')"/bin":$PATH \
   && yes | gem install --force bundler \
   && bundle install \
   && bundle update \
-  && useradd --no-create-home jekyll \
-  && mkdir -p /home/jekyll/Rlibrary
+  && useradd jekyll 
 
 
 WORKDIR /srv/site
 COPY ./bin/docker-setup.sh /usr/local/bin/docker-setup.sh
 
 RUN R -e "devtools::install_github('hadley/requirements')" 
-RUN echo "R_LIBS=~/RLibrary" > ~/.Renviron \
+RUN mkdir -p /home/jekyll/RLibrary \
+ && echo "R_LIBS=~/RLibrary" > /home/jekyll/.Renviron \
  && chown -R jekyll:jekyll /home/jekyll
+
+ENV R_ENVIRON_USER=~/.Renviron
 
 ENTRYPOINT ["/usr/local/bin/docker-setup.sh"]
 CMD ["make", "serve-in-container"]
