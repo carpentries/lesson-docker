@@ -39,7 +39,7 @@ RUN mkdir -p /home/jekyll/RLibrary \
 ENV R_ENVIRON_USER=~/.Renviron
 
 ENTRYPOINT ["/usr/local/bin/docker-setup.sh"]
-CMD ["make", "serve-in-container"]
+CMD ["bash"]
 
 EXPOSE 35729
 EXPOSE 4000
