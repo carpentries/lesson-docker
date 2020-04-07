@@ -5,6 +5,8 @@ This creates a simple docker container that has Jekyll built on top of
 scanning RMarkdown files for content. This is designed to work with current
 iterations of the lessons.
 
+Ideally this should reduce the pain of running the lessons.
+
 To run this container, set your working directory to a lesson you maintain and
 run the following command:
 
