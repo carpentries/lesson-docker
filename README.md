@@ -25,7 +25,7 @@ run the following command:
 UNIX (MacOS and Linux):
 
 ```sh
-docker run --rm -it -v $(pwd):/srv/site -p 4000:40000 -u $(id -u):$(id -g) zkamvar/carpentries-docker-test
+docker run --rm -it -v $(pwd):/srv/site -p 4000:4000 -u $(id -u):$(id -g) zkamvar/carpentries-docker-test
 ```
 
 Windows (n.b. this is untested)
