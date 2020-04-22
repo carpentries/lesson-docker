@@ -1,10 +1,5 @@
 FROM rocker/verse:latest
 
-# --
-# EnvVars
-# Ruby
-# --
-
 ENV BUNDLE_BIN=/usr/local/bundle/bin
 ENV JEKYLL_VERSION=3.8.5
 ENV JEKYLL_BIN=/usr/jekyll/bin
@@ -32,8 +27,7 @@ RUN pip3 install wheel \
 RUN export PATH=$(ruby -e 'puts Gem.user_dir')"/bin":$PATH \
   && yes | gem install --force bundler \
   && bundle install \
-  && bundle update \
-  && useradd jekyll 
+  && bundle update
 
 # Set the working directory and add the setup script
 WORKDIR /srv/site
@@ -42,14 +36,16 @@ COPY ./bin/docker-setup.sh /usr/local/bin/docker-setup.sh
 # Install requirements package and allow users to install
 # R packages when building the lessons
 RUN R -e "devtools::install_github('hadley/requirements')" 
-RUN mkdir -p /home/jekyll/RLibrary \
- && echo "R_LIBS=~/RLibrary" > /home/jekyll/.Renviron \
- && chown -R jekyll:jekyll /home/jekyll
 
-ENV R_ENVIRON_USER=~/.Renviron
+# Start and finish scripts for jekyll server
+COPY bin/start.sh /etc/services.d/jekyll/run
+COPY bin/fini.sh /etc/services.d/jekyll/finish
 
+# This entrypoint is a bit of a hack at the moment because I keep getting an
+# error if I put more than one lin in the run script above. This copies the
+# Gemfiles from /srv/gems to /rstudio/home
 ENTRYPOINT ["/usr/local/bin/docker-setup.sh"]
-CMD ["bash"]
+CMD ["/init"]
 
 EXPOSE 35729
 EXPOSE 4000

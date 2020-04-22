@@ -17,7 +17,6 @@ on the docker website: <https://www.docker.com/products/docker-desktop>
 
 > Note: because of the R installation and publishing tools, this image ends up 
 > being quite large (~3.5 GB).
-> Also, this is not working on macOS >:(
 
 To run this container, set your working directory to a lesson you maintain and
 run the following command:
@@ -25,13 +24,25 @@ run the following command:
 UNIX (MacOS and Linux):
 
 ```sh
-docker run --rm -it -v $(pwd):/srv/site -p 4000:4000 -u $(id -u):$(id -g) zkamvar/carpentries-docker-test
+docker run --rm -it \
+  -v ${PWD}:/home/rstudio \
+  -p 4000:4000 \
+  -p 8787:8787 \
+  -e PASSWORD=yourpasswordhere \
+  -e USERID=$(id -u) \
+  -e GROUPID=$(id -g) \
+  zkamvar/carpentries-docker-test
 ```
 
 Windows (n.b. this is untested)
 
 ```sh
-docker run --rm -it -v=%cd%:/srv/site -p 4000:4000 zkamvar/carpentries-docker-test
+docker run --rm -it \
+  -v ${PWD}:/home/rstudio \
+  -p 4000:4000 \
+  -p 8787:8787 \
+  -e PASSWORD=yourpasswordhere \
+  zkamvar/carpentries-docker-test
 ```
 
 Pros: no installation of jekyll, R, python, etc. required
