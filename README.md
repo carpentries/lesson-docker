@@ -51,7 +51,7 @@ docker run --rm -it \
   -e PASSWORD=yourpasswordhere \
   -e USERID=$(id -u) \
   -e GROUPID=$(id -g) \
-  zkamvar/carpentries-docker-test
+  carpentries/lesson-docker
 ```
 
 Windows (n.b. this is untested)
@@ -62,7 +62,7 @@ docker run --rm -it \
   -p 4000:4000 \
   -p 8787:8787 \
   -e PASSWORD=yourpasswordhere \
-  zkamvar/carpentries-docker-test
+  carpentries/lesson-docker
 ```
 
 When the Docker container is running you should see this in your terminal window:
