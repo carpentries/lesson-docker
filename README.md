@@ -73,23 +73,26 @@ When the Docker container is running you should see this in your terminal window
 <summary>First message from Docker container:</summary>
 
 ```sh
+
+
 This is the alpha test of The Carpentries Lesson Template docker image.
-Please let us know if you find any issues.
+Please open an issue if you find any problems or have suggestions:
+<https://github.com/carpentries/lesson-docker/issues/new>
 
 -----------------------------------------------------------------------------------
- Navigate your browser to http://localhost:8787 to open an RStudio sesssion.
- Navigate a separate browser tab to http://0.0.0.0:4000 to preview the site.
+ ->> Open RStudio: <http://localhost:8787> <<-
+ ->> Preview Site:   <http://0.0.0.0:4000> <<-
 
  Username: rstudio
  Password: yourpasswordhere
 
 Once you are in RStudio in your browser, edit any of the files in `_episodes_rmd/`
 and then run `make lesson-md` in the Terminal tab to render the lessons. The
-website will update automatically
+website will update automatically.
 -----------------------------------------------------------------------------------
 
 When you are finished, close the browser windows and use ctrl+c to exit
-this session. You should
+this session.
 
 [s6-init] making user provided files available at /var/run/s6/etc...exited 0.
 [s6-init] ensuring user provided files have correct perms...exited 0.
