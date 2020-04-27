@@ -12,12 +12,16 @@ fi
 
 
 
+echo ""
+echo ""
 echo "This is the alpha test of The Carpentries Lesson Template docker image."
-echo "Please let us know if you find any issues."
+echo "Please open an issue if you find any problems or have suggestions:"
+echo "<https://github.com/carpentries/lesson-docker/issues/new>"
 echo ""
 echo "-----------------------------------------------------------------------------------"
-echo " Navigate your browser to http://localhost:8787 to open an RStudio sesssion."
-echo " Navigate a separate browser tab to http://0.0.0.0:4000 to preview the site."
+echo ""
+echo " ->> Open RStudio: <http://localhost:8787> <<-"
+echo " ->> Preview Site:   <http://0.0.0.0:4000> <<-"
 echo ""
 echo " Username: rstudio"
 echo " Password: ${PASSWORD}"
@@ -28,7 +32,7 @@ echo "website will update automatically"
 echo "-----------------------------------------------------------------------------------"
 echo ""
 echo "When you are finished, close the browser windows and use <CTRL+C> to exit"
-echo "this session. You should"
+echo "this session."
 echo ""
 
 exec "$@"
