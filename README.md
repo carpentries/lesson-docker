@@ -1,12 +1,12 @@
-# carpentries-docker-test
+# Docker container for lesson maintenance
 
-This creates a simple docker container that has Jekyll built on top of 
+This creates a docker container that has Jekyll built on top of 
 [rocker/verse] with Hadley Wickham's [{requirements}] doing the work of
-scanning RMarkdown files for content. This is designed to work with current
-iterations of the lessons.
+scanning RMarkdown files for content. This is designed to work with all 
+Carpentries' lessons. 
 
-Ideally this should reduce the pain of running the lessons by requiring only
-one piece of software be installed: docker.
+The main goal of this project is to provide a single software requirement for
+building and maintiaining lessons officially supported by the Carpentries.
 
 Pros: no installation of jekyll, R, python, etc. required
 
@@ -30,7 +30,8 @@ locally in your browser. You will need to do the following steps:
 3. Open http://localhost:8787 to enter RStudio Server
 4. Edit any files in `_episodes_rmd` that you want to modify.
 5. Run `make lesson-md` in the RStudio terminal tab. The site will update
-   automatically.
+   automatically (if you would like to force everything to build, 
+   run `make -B lesson-md`)
 6. To exit, hit ctrl+c
 
 ## Running the container
