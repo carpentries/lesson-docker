@@ -72,27 +72,6 @@ When the Docker container is running you should see this in your terminal window
 <summary>First message from Docker container:</summary>
 
 ```sh
-
-
-This is the alpha test of The Carpentries Lesson Template docker image.
-Please open an issue if you find any problems or have suggestions:
-<https://github.com/carpentries/lesson-docker/issues/new>
-
------------------------------------------------------------------------------------
- ->> Open RStudio: <http://localhost:8787> <<-
- ->> Preview Site:   <http://0.0.0.0:4000> <<-
-
- Username: rstudio
- Password: yourpasswordhere
-
-Once you are in RStudio in your browser, edit any of the files in `_episodes_rmd/`
-and then run `make lesson-md` in the Terminal tab to render the lessons. The
-website will update automatically.
------------------------------------------------------------------------------------
-
-When you are finished, close the browser windows and use ctrl+c to exit
-this session.
-
 [s6-init] making user provided files available at /var/run/s6/etc...exited 0.
 [s6-init] ensuring user provided files have correct perms...exited 0.
 [fix-attrs.d] applying ownership & permissions fixes...
@@ -112,13 +91,35 @@ Primary group ID is now custom_group 1001
 [cont-init.d] userconf: exited 0.
 [cont-init.d] done.
 [services.d] starting services
+
+
+This is the alpha test of The Carpentries Lesson Template docker image.
+Please open an issue if you find any problems or have suggestions:
+<https://github.com/carpentries/lesson-docker/issues/new>
+
+-----------------------------------------------------------------------------------
+
+ ->> Open RStudio: <http://localhost:8787> <<-
+ ->> Preview Site:   <http://0.0.0.0:4000> <<-
+
+ Username: rstudio
+ Password: data4Carp
+
+Once you are in RStudio in your browser, edit any of the files in `_episodes_rmd/`
+and then run `make lesson-md` in the Terminal tab to render the lessons. The
+website will update automatically
+-----------------------------------------------------------------------------------
+
+When you are finished, close the browser windows and use <CTRL+C> to exit
+this session.
+
 [services.d] done.
 Configuration file: /home/rstudio/_config.yml
             Source: /home/rstudio
        Destination: /home/rstudio/_site
  Incremental build: disabled. Enable with --incremental
       Generating... 
-                    done in 0.899 seconds.
+                    done in 0.844 seconds.
  Auto-regeneration: enabled for '/home/rstudio'
     Server address: http://0.0.0.0:4000
   Server running... press ctrl-c to stop.
@@ -128,15 +129,12 @@ Configuration file: /home/rstudio/_config.yml
 
 ## Cleaning up
 
-At the moment, the container does not know how to clean up after itself properly,
-so you may be left with some extra files and folders in your directory:
+At the moment, there are two folders left over from RStudio that will either be
+empty or will need to be removed.
 
 ```
-Gemfile
-Gemfile.lock
 .bash_history
-.cache/
-.rstudio/
+kitematic/
 ```
 
 You should not commit these files to your repository. Instead, remove them

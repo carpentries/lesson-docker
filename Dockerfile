@@ -55,7 +55,7 @@ RUN R -e "devtools::install_github('hadley/requirements')"
 
 # Start and finish scripts for jekyll server
 COPY bin/start.sh /etc/services.d/jekyll/run
-COPY bin/fini.sh /etc/services.d/jekyll/finish
+COPY bin/fini.sh /etc/cont-finish.d/jekyll-finish
 
 # This entrypoint is a bit of a hack at the moment because I keep getting an
 # error if I put more than one lin in the run script above. This copies the
