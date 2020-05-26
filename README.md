@@ -49,7 +49,6 @@ docker run --rm -it \
   -v ${PWD}:/home/rstudio \
   -p 4000:4000 \
   -p 8787:8787 \
-  -e PASSWORD=yourpasswordhere \
   -e USERID=$(id -u) \
   -e GROUPID=$(id -g) \
   carpentries/lesson-docker
@@ -62,7 +61,6 @@ docker run --rm -it \
   -v ${PWD}:/home/rstudio \
   -p 4000:4000 \
   -p 8787:8787 \
-  -e PASSWORD=yourpasswordhere \
   carpentries/lesson-docker
 ```
 

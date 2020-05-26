@@ -1,33 +1,49 @@
-FROM rocker/verse:latest
+FROM rocker/verse:3.6.3
 
 ENV BUNDLE_BIN=/usr/local/bundle/bin
-ENV JEKYLL_VERSION=3.8.5
 ENV JEKYLL_BIN=/usr/jekyll/bin
 ENV PATH="${JEKYLL_BIN}:${BUNDLE_BIN}:$PATH"
 
 WORKDIR /srv/gems
 COPY ./Gemfile /srv/gems/Gemfile
 
-# Install ruby and python pip
+# Install python pip for validity checks
 RUN apt-get update && apt-get install -y --no-install-recommends \
   apt-utils \
-  ruby \
-  ruby-dev \
   build-essential \
   libxml2-dev \
   python3-pip \
   python3-setuptools \
-  && echo "gem: --no-ri --no-rdoc" > ~/.gemrc 
+  jq \ 
+  gnupg2 \
+ && pip3 install wheel \
+ && pip3 install PyYAML
 
-# Install PyYAML for checking validity of episodes
-RUN pip3 install wheel \
-  && pip3 install PyYAML
+# Get requirements from GitHub
+RUN echo "gem: --no-ri --no-rdoc" > ~/.gemrc \
+ && wget -O ~/.ghvers.json "https://pages.github.com/versions.json" \
+ && RBY=$(cat ~/.ghvers.json | jq --raw-output '.ruby') \
+ && sed -i -e "s/RUBY_VERSION/${RBY}/" /srv/gems/Gemfile 
 
-# Setup and install jekyll. 
-RUN export PATH=$(ruby -e 'puts Gem.user_dir')"/bin":$PATH \
-  && yes | gem install --force bundler \
-  && bundle install \
-  && bundle update
+# Download the pinned Ruby version from GitHub
+RUN RBY=$(cat ~/.ghvers.json | jq --raw-output '.ruby') \
+ && RBY_MAJ=$(echo ${RBY} | sed -r -e "s/^([0-9]+[.][0-9]+)[.][0-9]+$/\1/") \
+ && wget -O ~/RUBY.tar.gz "https://cache.ruby-lang.org/pub/ruby/${RBY_MAJ}/ruby-${RBY}.tar.gz"
+
+# Install Ruby from source
+RUN cd ~ \
+ && RBY=$(cat ~/.ghvers.json | jq --raw-output '.ruby') \
+ && tar -xzvf RUBY.tar.gz\
+ && cd ruby-${RBY} \
+ && ./configure \
+ && make \
+ && sudo make install
+
+
+# Setup and install jekyll 
+RUN yes | gem install --force bundler \
+ && bundle install \
+ && bundle update
 
 # Set the working directory and add the setup script
 WORKDIR /srv/site

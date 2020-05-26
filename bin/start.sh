@@ -1,5 +1,4 @@
-#!/usr/bin/execlineb -P
+#!/usr/bin/with-contenv bash
 
-exec /usr/local/bundle/bin/jekyll serve -s /home/rstudio -d /home/rstudio/_site --host 0.0.0.0 2>/dev/null
-
+exec ${BUNDLE_BIN}/jekyll serve -s /home/rstudio -d /home/rstudio/_site --host 0.0.0.0 
 
