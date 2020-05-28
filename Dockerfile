@@ -51,7 +51,8 @@ COPY ./bin/docker-setup.sh /usr/local/bin/docker-setup.sh
 
 # Install requirements package and allow users to install
 # R packages when building the lessons
-RUN R -e "devtools::install_github('hadley/requirements')" 
+RUN R -q -e "devtools::install_github('hadley/requirements')" 
+RUN R -q -e "install.packages('renv')"
 
 # Start and finish scripts for jekyll server
 COPY bin/start.sh /etc/services.d/jekyll/run
