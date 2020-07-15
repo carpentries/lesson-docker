@@ -23,5 +23,8 @@ echo "When you are finished, close the browser windows and use <CTRL+C> to exit"
 echo "this session."
 echo ""
 
-exec ${BUNDLE_BIN}/jekyll serve -s /home/rstudio -d /home/rstudio/_site --host 0.0.0.0 
+# Note: normally, we would be able to specify the input and output directory
+# with flags from jekyll, BUT because of remote themes, we have to enter the
+# directory with jekyll, which is not bad per se, just a bit more annoying.
+exec /bin/bash -c "cd /home/rstudio && ${BUNDLE_BIN}/jekyll serve --host 0.0.0.0"
 
