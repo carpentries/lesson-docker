@@ -1,4 +1,4 @@
-FROM rocker/verse:3.6.3
+FROM rocker/verse:4.0.3
 
 ENV BUNDLE_BIN=/usr/local/bundle/bin
 ENV JEKYLL_BIN=/usr/jekyll/bin
